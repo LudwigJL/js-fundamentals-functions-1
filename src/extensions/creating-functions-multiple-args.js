@@ -10,6 +10,16 @@
 //
 // TODO: write code below
 
+function inbetween(lower, upper) {
+  const nums = []
+
+  for(let i = lower; i <= upper; i++){
+    nums.push(i)
+  }
+
+  return nums
+}
+
 // 2. define a function that takes two arguments: a string and a number.
 // The function should return the same string but in upper case with exclamation
 // marks appended to the end. The number of exclamation marks should be
@@ -21,6 +31,15 @@
 // error, 10    | ERROR!!!!!!!!!!
 //
 // TODO: write code below
+
+function makeCommentAngry(comment, num) {
+  let angryComment = comment.toUpperCase()
+  for(let i = 0; i < num; i++){
+    angryComment += '!'
+  }
+
+  return angryComment;
+}
 
 // 3. define a function that takes two arguments: a string and a number.
 // The function should return the new time in 24hr time after adding the additional time in minutes.
@@ -34,9 +53,36 @@
 // '23:50', 30  | '00:20'
 // TODO: write code below
 
+function increaseTimer(format, newMinutes){
+  let clock = format.split(':')
+  let hours = parseInt(clock[0])
+  let minutes = parseInt(clock[1])
+
+  minutes += newMinutes
+
+  const newHours = Math.floor(minutes / 60)
+  if(newHours > 0){
+    hours = (hours + newHours) % 24
+  }
+
+  minutes = minutes % 60
+
+  if(hours === 0){
+    hours = '0' + hours
+  }
+
+  if(minutes.toString().length < 2){
+    minutes = '0' + minutes
+  }
+
+  return hours + ':' + minutes
+
+}
+
+
 // TODO: change the exported value to be the name of the function you defined
 module.exports = {
-  a: undefined, // 1. change undefined to be the name of the function defined to create the range of numbers (the first todo)
-  b: undefined, // 2. change undefined to be the name of the function defined to return the string with exclamations (the second todo)
-  c: undefined // etc
+  a: inbetween, // 1. change undefined to be the name of the function defined to create the range of numbers (the first todo)
+  b: makeCommentAngry, // 2. change undefined to be the name of the function defined to return the string with exclamations (the second todo)
+  c: increaseTimer // etc
 }
